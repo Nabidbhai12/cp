@@ -1,0 +1,28 @@
+#include<stdio.h>
+int myfnc(int n,int k)
+{
+    if(k==1 || n==k)
+        return 1;
+    else
+        return myfnc(n-1,k-1)+k*myfnc(n-1,k);
+}
+int main()
+{
+    int n;
+while(scanf("%d",&n)==1)
+{
+
+    int k=1,sum=0;
+    while(k<=n){
+            
+
+    sum+=myfnc(n,k);
+    k++;
+    }
+    if(n==1)
+        printf("1\n");
+    else
+        
+printf("%d\n",sum);
+}
+}
