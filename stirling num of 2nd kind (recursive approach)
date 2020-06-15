@@ -1,0 +1,15 @@
+#include<stdio.h>
+int stirling(int n,int k)
+{
+    if(n==k || k==1)
+        return 1;
+    else
+    return stirling(n-1,k-1)+k*stirling(n-1,k);
+}
+int main()
+{
+    int n,k;
+    while(scanf("%d %d",&n,&k)==2)
+        printf("%d\n",stirling(n,k));
+
+}
