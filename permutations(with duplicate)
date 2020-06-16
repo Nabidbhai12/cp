@@ -1,0 +1,57 @@
+#include<stdlib.h>
+#include<string.h>
+#include<stdio.h>
+int flag;
+static int count=0;
+void swap(char *a,char *b)
+{
+    char temp=*a;
+    *a=*b;
+    *b=temp;
+}
+void permut(int start,int end,char *arr)
+{
+    if(start==end){
+            count++;
+        printf("NO OF PERMUT :%d  %s\n",count,arr);
+    }
+        else
+        {
+            for(int a=start;a<=end;a++)
+            {
+                flag=0;
+                if(start!=a)
+                {
+
+                    char temp=arr[a];
+                    int t=a-1;
+                    while(t>=start)
+                    {
+                        if(temp==arr[t])
+                        {
+                            flag=-1;
+                            break;
+                        }
+                        t--;
+                    }
+                }
+                if(flag==0){
+                swap((arr+a),(arr+start));
+                permut(start+1,end,arr);
+                swap((arr+a),(arr+start));
+                }
+                else
+                    continue;
+            }
+        }
+}
+int main()
+{
+    char *arr;
+    int n;
+    scanf("%d",&n);
+    arr=(char*)malloc(sizeof(char)*n);
+    scanf(" %[^\n]",arr);
+    permut(0,strlen(arr)-1,arr);
+    free(arr);
+}
