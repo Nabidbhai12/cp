@@ -1,0 +1,54 @@
+#include<stdio.h>
+double f2(double num)
+{
+    if(num<0)
+        return -num;
+    else
+        return num;
+}
+double f1(double num,int pow)
+{
+    if(pow==1)
+        return num;
+    else
+        return num*f1(num,pow-1);
+}
+double pwr(double start,double end,int pow,int num)
+{
+    double mid=(start+end)/2.00;
+    double test=f1(mid,pow);
+    printf("%lf ans = %lf\n",test,mid);
+
+    if(f2(test-num)<0.0001)
+        return mid;
+    else if(test>num)
+    {
+        pwr(start,mid,pow,num);
+    }
+    else
+        pwr(mid,end,pow,num);
+}
+
+
+
+int main()
+{
+    int num,pow;
+    scanf("%d %d",&num,&pow);
+    int a=1;
+    while(1)
+    {
+        if(f1(a,pow)==num)
+        {
+            printf("%d\n",a);
+            return;
+        }
+        if(f1(a,pow)<num && f1(a+1,pow)>num)
+            {
+                double ans=pwr(a,a+1,pow,num);
+                printf("final ans is %lf\n",ans);
+                return;
+            }
+        a++;
+    }
+}
