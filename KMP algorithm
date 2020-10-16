@@ -1,0 +1,40 @@
+#include<stdio.h>
+long long int f1(char *str)
+{
+    char *ptr=str;
+   long long int mul=1,p=31,m=1E9+9;
+   long long int hash=0;
+   while(*ptr)
+   {
+       hash=(hash+  (*ptr-'a'+1)*mul  )%m;
+       mul=(mul*p)%m;
+       ptr++;
+   }
+   printf("%lld\n",hash);
+   return hash;
+}
+void f2(char *str, char *pat)
+{
+    long long int u,pathash=f1(pat),pos;
+long  long int len=strlen(pat),limit=strlen(str);
+char *temp=(char*)malloc(sizeof(char)*(len+1));
+    for(int i=0;i+len<=limit;i++)
+    {
+        pos=i;
+        u=0;
+        for(int k=0;k<len;k++)
+        {
+            temp[u++]=str[pos++];
+        }
+        temp[u]='\0';
+        if(f1(temp)==pathash)
+            printf("pattern founded %d\n",i);
+    }
+}
+int main()
+{
+    char str[100],str1[100];
+    scanf(" %[^\n]",str);
+    scanf(" %[^\n]",str1);
+f2(str,str1);
+}
